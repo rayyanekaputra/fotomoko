@@ -25,3 +25,7 @@ Ideas and features to pick up later. Not scheduled.
 ## Deploy
 
 - Set up Cloudflare Pages (see `README.md` for the two options). Connecting the Git repo needs it pushed to GitHub/GitLab first.
+
+## QA
+
+- **Safari / iOS check.** Nobody here has an iOS device; a friend will test on the staging deploy. Watch for: canvas `letterSpacing` (Safari 18+ only; older iOS draws `strip-classic` text tighter), the iOS canvas size cap at 4×, font loading, and later the camera (needs HTTPS).
