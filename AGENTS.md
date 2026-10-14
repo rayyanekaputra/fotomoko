@@ -29,6 +29,7 @@ Keep this table up to date as files are added.
 | `src/lib/photos.js` | Photo loading (downscaled to 2400px), sample list, `photosForSlots` |
 | `src/lib/export.js` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap. Story/square add the background (light/dark/transparent), template size (`ZOOMS`) and a soft 0-offset shadow |
 | `src/lib/draw_utils.js` | Shared canvas helpers: `drawCover` (crop, zoom, Figma luminosity blend), `drawText` (Figma text boxes incl. cap-trim and rotation), `drawRotatedImage`, round rects, `dates` |
+| `src/lib/palette.js` | `extractPalette(photos)`: 4 lively dominant colours of the session's photos (OKLab grid count, merge, chroma-weighted score), cached per photo set. Used by `strip-classic`'s swatches |
 | `src/lib/fonts.js` | `ensureFonts()`: waits for a template's fonts before drawing. Families are loaded by the Google Fonts `<link>` in `index.html` |
 | `src/lib/assets.js` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
 | `src/lib/templates/index.js` | `TEMPLATES` list (picker order) |

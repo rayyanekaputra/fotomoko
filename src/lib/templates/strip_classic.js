@@ -1,7 +1,9 @@
 // Frame 39 (Figma 21:2): white vertical strip, 4 black & white photos,
-// sideways labels and colour swatches on the right.
+// sideways labels and colour swatches on the right. The swatches are the
+// session's photo palette (original colours, before the black & white tone).
 
 import { drawCover, drawText, fillRect, dates } from '../draw_utils.js';
+import { extractPalette } from '../palette.js';
 
 const W = 401;
 const H = 1391;
@@ -14,7 +16,7 @@ const bold = { font: `700 24px ${FONT}`, size: 24, letterSpacing: -1.2, rotate: 
 const regular = { font: `400 24px ${FONT}`, size: 24, letterSpacing: -1.2, rotate: -90 };
 const small = { font: `400 12px ${FONT}`, size: 12, rotate: -90 };
 
-// Top to bottom.
+// Top to bottom. Figma's hand-picked swatches, used until there are photos.
 const SWATCHES = ['#a47453', '#37bad1', '#decdb9', '#aea5b1'];
 
 export default {
@@ -46,6 +48,7 @@ export default {
     drawText(ctx, fields.device, { x: 302.25, y: 1280, w: 31, h: 77 }, bold);
     drawText(ctx, fields.code, { x: 370.25, y: 16, w: 15, h: 172 }, small);
 
-    SWATCHES.forEach((color, i) => fillRect(ctx, 302.25, 745 + i * 29, 36, 18, color));
+    const swatches = extractPalette(photos) ?? SWATCHES;
+    swatches.forEach((color, i) => fillRect(ctx, 302.25, 745 + i * 29, 36, 18, color));
   },
 };
