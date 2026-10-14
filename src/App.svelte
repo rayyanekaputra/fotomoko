@@ -17,7 +17,8 @@
   let fieldValues = $state({}); // { [templateId]: { [key]: value } }
   let format = $state(params.get('format') ?? 'native');
   let background = $state(params.get('bg') ?? 'light');
-  let scale = $state(3);
+  let zoom = $state(1); // story/square template size, one of ZOOMS
+  let scale = $state(2);
 
   const fields = $derived.by(() => {
     const saved = fieldValues[template.id] || {};
@@ -40,9 +41,9 @@
   <TemplatePicker templates={TEMPLATES} bind:template />
   <PhotoInput bind:photos />
   <Fields {template} values={fields} onchange={setField} />
-  <ExportOptions {template} {photos} {fields} bind:format bind:background bind:scale />
+  <ExportOptions {template} {photos} {fields} bind:format bind:background bind:zoom bind:scale />
 </aside>
 
 <main>
-  <Preview {template} {photos} {fields} {format} {background} />
+  <Preview {template} {photos} {fields} {format} {background} {zoom} />
 </main>

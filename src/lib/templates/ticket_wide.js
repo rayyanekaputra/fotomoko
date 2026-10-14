@@ -6,6 +6,7 @@ import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './tick
 
 const W = 1368;
 const H = 463;
+const RADIUS = 24;
 const SLOT_W = 288;
 const SLOT_H = 299;
 
@@ -14,6 +15,7 @@ export default {
   name: 'Boarding pass (wide)',
   width: W,
   height: H,
+  radius: RADIUS, // rounded card; the story/square shadow follows it
   slots: [0, 1, 2].map((i) => ({ x: 16 + i * (SLOT_W + 16), y: 103, w: SLOT_W, h: SLOT_H })),
   fonts: [...TICKET_FONTS, '700 52.645px "IBM Plex Mono"'],
   images: {
@@ -28,7 +30,7 @@ export default {
 
   draw(ctx, { photos, fields, images }) {
     // Rounded card.
-    roundRectPath(ctx, 0, 0, W, H, 24);
+    roundRectPath(ctx, 0, 0, W, H, RADIUS);
     ctx.clip();
     fillRect(ctx, 0, 0, W, H, '#ffffff');
 

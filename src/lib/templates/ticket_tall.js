@@ -6,6 +6,7 @@ import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './tick
 
 const W = 559;
 const H = 1064.062;
+const RADIUS = 24;
 const PHOTO_H = 580.351;
 const HEADER_H = 93; // 24 padding + 45 icon + 24 padding
 const BODY_Y = PHOTO_H + HEADER_H;
@@ -16,6 +17,7 @@ export default {
   name: 'Boarding pass (tall)',
   width: W,
   height: H,
+  radius: RADIUS, // rounded card; the story/square shadow follows it
   slots: [{ x: 0, y: 0, w: W, h: PHOTO_H }],
   fonts: TICKET_FONTS,
   images: {
@@ -29,7 +31,7 @@ export default {
   draw(ctx, { photos, fields, images }) {
     // Rounded card. The photo's top corners come from this clip; its bottom
     // edge stays square where it meets the header.
-    roundRectPath(ctx, 0, 0, W, H, 24);
+    roundRectPath(ctx, 0, 0, W, H, RADIUS);
     ctx.clip();
 
     // Photo overflows its slot in Figma (577×768 in 559×580).

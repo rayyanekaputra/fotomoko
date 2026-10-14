@@ -1,6 +1,6 @@
 # fotomoko
 
-A photobooth that runs entirely in the browser. Pick a template, load photos (or the samples), edit the text, and download a PNG: template only, story 9:16, or square 1:1, at 1×–4×. Photos never leave your device.
+A photobooth that runs entirely in the browser. Pick a template, load photos (or the samples), edit the text, and download a PNG: template only, story 9:16, or square 1:1 (light, dark or transparent background, template size S–XL), at 1×–4× (2× recommended). Photos never leave your device.
 
 Built with Svelte 5 and Vite. Uses [Bun](https://bun.com).
 

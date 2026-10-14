@@ -27,12 +27,12 @@ Keep this table up to date as files are added.
 | `src/components/ExportOptions.svelte` | Format / background / size, size-cap note, PNG download |
 | `src/components/Preview.svelte` | Preview canvas; re-renders once per animation frame on changes and on resize |
 | `src/lib/photos.js` | Photo loading (downscaled to 2400px), sample list, `photosForSlots` |
-| `src/lib/export.js` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap |
+| `src/lib/export.js` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap. Story/square add the background (light/dark/transparent), template size (`ZOOMS`) and a soft 0-offset shadow |
 | `src/lib/draw_utils.js` | Shared canvas helpers: `drawCover` (crop, zoom, Figma luminosity blend), `drawText` (Figma text boxes incl. cap-trim and rotation), `drawRotatedImage`, round rects, `dates` |
 | `src/lib/fonts.js` | `ensureFonts()`: waits for a template's fonts before drawing. Families are loaded by the Google Fonts `<link>` in `index.html` |
 | `src/lib/assets.js` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
 | `src/lib/templates/index.js` | `TEMPLATES` list (picker order) |
-| `src/lib/templates/<name>.js` | One template each: `{ id, name, width, height, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. The file header names the Figma frame and node id |
+| `src/lib/templates/<name>.js` | One template each: `{ id, name, width, height, radius?, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. `radius` (rounded card corners) shapes the story/square shadow. The file header names the Figma frame and node id |
 | `src/lib/templates/ticket_parts.js` | Shared boarding-pass pieces (styles, fields, info block) |
 | `public/assets/svg/` | Logos, icons, markers and barcodes exported from Figma. Served as-is at `assets/svg/...` |
 | `public/assets/photo/` | Sample photos, loaded only when the user asks. They get deployed, so keep them free of EXIF/GPS metadata |

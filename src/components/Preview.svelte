@@ -4,7 +4,7 @@
   import { renderTo } from '../lib/export.js';
   import { photosForSlots } from '../lib/photos.js';
 
-  let { template, photos, fields, format, background } = $props();
+  let { template, photos, fields, format, background, zoom } = $props();
 
   let wrap;
   let canvas;
@@ -28,14 +28,14 @@
     const fit = Math.min(box.width / base.w, box.height / base.h);
     const scale = Math.max(0.1, fit * dpr);
 
-    renderTo(canvas, t, { photos: photosForSlots(t, photos), fields, images, format, background, scale });
+    renderTo(canvas, t, { photos: photosForSlots(t, photos), fields, images, format, background, zoom, scale });
     canvas.style.width = `${Math.floor(base.w * fit)}px`;
     canvas.style.height = `${Math.floor(base.h * fit)}px`;
   }
 
   $effect(() => {
     // Track every input the render reads.
-    void [template, photos, fields, format, background];
+    void [template, photos, fields, format, background, zoom];
     scheduleRender();
     return () => cancelAnimationFrame(frame);
   });
@@ -44,5 +44,5 @@
 <svelte:window onresize={scheduleRender} />
 
 <div id="preview-wrap" bind:this={wrap}>
-  <canvas id="preview" bind:this={canvas}></canvas>
+  <canvas id="preview" class:transparent={format !== 'native' && background === 'transparent'} bind:this={canvas}></canvas>
 </div>
