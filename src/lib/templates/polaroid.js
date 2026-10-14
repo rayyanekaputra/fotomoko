@@ -1,7 +1,7 @@
 // Frame 44 (Figma 21:274): cream paper, 3 colour photos in a 2×2 grid,
 // a handwritten name, a huge yellow "fotomoko" and two smiley stamps.
 
-import { drawCover, drawText, drawRotatedImage, fillRect } from '../draw_utils.mjs';
+import { drawCover, drawText, drawRotatedImage, fillRect } from '../draw_utils.js';
 
 const W = 1073.071;
 const H = 1404.595;

@@ -1,6 +1,6 @@
 // Shared pieces of the boarding-pass templates (Frames 41 and 42).
 
-import { drawText, dates } from '../draw_utils.mjs';
+import { drawText, dates } from '../draw_utils.js';
 
 export const RED = '#d44346';
 const GREY = '#5d5d5d';

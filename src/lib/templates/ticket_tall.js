@@ -1,8 +1,8 @@
 // Frame 42 (Figma 21:138): portrait boarding pass. One photo on top, red
 // header, flight details, barcode and a faint smiley watermark.
 
-import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.mjs';
-import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './ticket_parts.mjs';
+import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.js';
+import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './ticket_parts.js';
 
 const W = 559;
 const H = 1064.062;

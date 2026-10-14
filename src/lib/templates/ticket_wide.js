@@ -1,8 +1,8 @@
 // Frame 41 (Figma 21:37): landscape boarding pass. Red header, 3 photos,
 // flight details on the right, barcode and a faint smiley watermark.
 
-import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.mjs';
-import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './ticket_parts.mjs';
+import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.js';
+import { RED, styles, TICKET_FONTS, TICKET_FIELDS, drawTicketInfo } from './ticket_parts.js';
 
 const W = 1368;
 const H = 463;

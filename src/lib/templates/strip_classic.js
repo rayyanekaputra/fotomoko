@@ -1,7 +1,7 @@
 // Frame 39 (Figma 21:2): white vertical strip, 4 black & white photos,
 // sideways labels and colour swatches on the right.
 
-import { drawCover, drawText, fillRect, dates } from '../draw_utils.mjs';
+import { drawCover, drawText, fillRect, dates } from '../draw_utils.js';
 
 const W = 401;
 const H = 1391;

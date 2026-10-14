@@ -2,7 +2,7 @@
 // palette colours, shape markers on the left, yellow sideways text and a
 // 3-colour bar on the right.
 
-import { drawCover, drawText, drawRotatedImage, fillRect, dates } from '../draw_utils.mjs';
+import { drawCover, drawText, drawRotatedImage, fillRect, dates } from '../draw_utils.js';
 
 const W = 400;
 const H = 1391;

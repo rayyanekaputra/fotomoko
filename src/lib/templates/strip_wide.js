@@ -1,7 +1,7 @@
 // Frame 40 (Figma 21:21): yellow horizontal strip, 3 black & white photos,
 // then a panel with the date, "Fotomoko" and a big cropped smiley.
 
-import { drawCover, drawText, drawRotatedImage, fillRect, dates } from '../draw_utils.mjs';
+import { drawCover, drawText, drawRotatedImage, fillRect, dates } from '../draw_utils.js';
 
 const W = 1064.8;
 const H = 359.734;
