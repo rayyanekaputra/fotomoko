@@ -62,10 +62,12 @@ Intentional differences from Figma (don't "fix" them back):
 
 - Done: migrated to Svelte 5 + Vite (`plans/002-svelte-migration.md`), output pixel-identical to the vanilla version.
 - Done: all 6 templates, export (native / story / square, 1×–4×, light/dark background), editable text fields, sample photos. See `plans/001-templates.md`.
+- Done: canvas fixes. Story/square now have a soft 0-offset shadow, a transparent background option and an S/M/L/XL template-size slider. The default export size is 2× (labelled recommended). Checked in headless Firefox screenshots only; PNG download and the slider in a real browser are untested.
+- The current UI is a dev test bench for the canvas (templates, filters later). The real UI will be designed in Figma later; see `backlog.md`. The sample photos (the user's own) stay in `public/` as deployed placeholders.
 - Waiting: the user's QA of the templates and the Svelte UI. Not yet tested after the migration: PNG download, loading photos through the file picker, typing in text fields, and a real phone (only one phone-width screenshot was checked).
 - The built app loads much faster than the old unbundled `.mjs` setup (one bundled file instead of a chain of module requests). Canvas drawing cost is unchanged.
 - Not started: camera capture, photo filters, share sheet, PWA (see `backlog.md`).
-- Git repo on `master`, not pushed anywhere yet. Ask before committing or pushing. (The user allowed self-commits only for the Svelte migration, which is finished.)
+- Git repo on `master`, not pushed anywhere yet. Ask before committing code or pushing. Exception: agents may commit changes to `AGENTS.md`, `CLAUDE.md` and `backlog.md` themselves, without asking. Keep those commits to just those files, and use `docs:` messages.
 - Deploy target: Cloudflare Pages (static, `dist/`). Not set up yet; see `README.md`.
 
 ## Environment and file safety
