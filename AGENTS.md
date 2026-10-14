@@ -16,7 +16,23 @@ The project is new. Keep this table up to date as files are added.
 
 | File | Role |
 | --- | --- |
-| `index.html` | Markup, inline CSS, and the single `<script type="module">` entry point |
+| `index.html` | Markup, inline CSS, and the single `<script type="module">` entry point (`main.mjs`) |
+| `main.mjs` | App wiring: template picker, photo loading, text fields, preview, download |
+| `elements.mjs` | Central DOM lookups (`elements` object). Add new control IDs here |
+| `export.mjs` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap |
+| `draw_utils.mjs` | Shared canvas helpers: `drawCover` (crop, zoom, Figma luminosity blend), `drawText` (Figma text boxes incl. cap-trim and rotation), `drawRotatedImage`, round rects, `dates` |
+| `fonts.mjs` | `ensureFonts()`: waits for a template's fonts before drawing. Families are loaded by the Google Fonts `<link>` in `index.html` |
+| `assets.mjs` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
+| `templates/index.mjs` | `TEMPLATES` list (picker order) |
+| `templates/<name>.mjs` | One template each: `{ id, name, width, height, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. The file header names the Figma frame and node id |
+| `templates/ticket_parts.mjs` | Shared boarding-pass pieces (styles, fields, info block) |
+| `assets/svg/` | Logos, icons, markers and barcodes exported from Figma |
+| `assets/photo/` | Sample photos (loaded only when the user asks) |
+| `plans/` | Implementation plans. `backlog.md` holds unscheduled ideas |
+
+Templates are drawn on a canvas in Figma coordinates; `export.mjs` sets the transform for the chosen scale and format, so templates never deal with export sizes. Dev shortcut: `?template=<id>&format=story&bg=dark&samples` opens a template with the sample photos loaded.
+
+Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). When changing a template, pull `get_design_context` for its node and copy the numbers; don't eyeball them.
 
 ## Environment and file safety
 
@@ -27,7 +43,8 @@ The project is new. Keep this table up to date as files are added.
 
 ## Running and testing
 
-- No install needed. Serve the directory statically, e.g. `bunx serve`, and open it in a browser. ES modules don't load over `file://`.
+- No install needed. Serve the directory statically, e.g. `bunx serve .`, and open it in a browser. ES modules don't load over `file://`.
+- **Don't use `bun index.html`.** That's Bun's bundling dev server: it answers every path it didn't bundle with `index.html`, so SVGs and sample photos that templates load at runtime fail ("asset failed to load").
 - **`getUserMedia` requires a secure context.** `localhost` works. Testing on a phone over the LAN needs HTTPS (or a tunnel).
 - There is no test suite or linter. Verify changes by loading the page, granting camera access, and taking photos. Test at phone width (DevTools device emulation) as well as desktop.
 
