@@ -10,6 +10,8 @@ Ideas and features to pick up later. Not scheduled.
 ## Photos
 
 - **Photo filters.** Let the user pick a filter (B&W, duotone, sepia, film grain, …) instead of, or on top of, each template's built-in look.
+- **Swatch colour override.** `strip-classic`'s swatches are automatic only; colour inputs to override them could come later.
+- **Palette in other templates.** `extractPalette()` could tint other templates (borders, text, backgrounds) from the photos.
 - **Photo aspect / cropping.** Decide the capture aspect ratio and how photos are cropped to each template slot (most slots are 3:4, the ticket slots are near-square).
 
 ## Capture
