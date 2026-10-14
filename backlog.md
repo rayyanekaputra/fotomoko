@@ -19,4 +19,4 @@ Ideas and features to pick up later. Not scheduled.
 
 ## Deploy
 
-- Set up Cloudflare Pages (see `README.md` for the two options).
+- Set up Cloudflare Pages (see `README.md` for the two options). Connecting the Git repo needs it pushed to GitHub/GitLab first.

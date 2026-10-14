@@ -62,9 +62,10 @@ Intentional differences from Figma (don't "fix" them back):
 
 - Done: migrated to Svelte 5 + Vite (`plans/002-svelte-migration.md`), output pixel-identical to the vanilla version.
 - Done: all 6 templates, export (native / story / square, 1×–4×, light/dark background), editable text fields, sample photos. See `plans/001-templates.md`.
-- Waiting: the user's QA of the templates.
+- Waiting: the user's QA of the templates and the Svelte UI. Not yet tested after the migration: PNG download, loading photos through the file picker, typing in text fields, and a real phone (only one phone-width screenshot was checked).
+- The built app loads much faster than the old unbundled `.mjs` setup (one bundled file instead of a chain of module requests). Canvas drawing cost is unchanged.
 - Not started: camera capture, photo filters, share sheet, PWA (see `backlog.md`).
-- Git repo on `master`, not pushed anywhere yet. Ask before committing or pushing.
+- Git repo on `master`, not pushed anywhere yet. Ask before committing or pushing. (The user allowed self-commits only for the Svelte migration, which is finished.)
 - Deploy target: Cloudflare Pages (static, `dist/`). Not set up yet; see `README.md`.
 
 ## Environment and file safety
