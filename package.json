@@ -1,0 +1,13 @@
+{
+  "name": "fotomoko",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "scripts":{
+  "dev":"bunx serve"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}
