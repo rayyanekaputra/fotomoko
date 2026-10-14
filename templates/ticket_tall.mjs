@@ -27,13 +27,14 @@ export default {
   fields: TICKET_FIELDS,
 
   draw(ctx, { photos, fields, images }) {
-    // Rounded card. The photo has its own rounded corners on top of the panel.
+    // Rounded card. The photo's top corners come from this clip; its bottom
+    // edge stays square where it meets the header.
     roundRectPath(ctx, 0, 0, W, H, 24);
     ctx.clip();
 
     // Photo overflows its slot in Figma (577×768 in 559×580).
     const zoom = 768.084 / (W * (4 / 3));
-    drawCover(ctx, photos[0], this.slots[0], { zoom, radius: 24 });
+    drawCover(ctx, photos[0], this.slots[0], { zoom });
 
     // Header.
     fillRect(ctx, 0, PHOTO_H, W, HEADER_H, RED);
