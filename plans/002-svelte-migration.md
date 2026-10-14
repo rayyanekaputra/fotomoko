@@ -1,5 +1,7 @@
 # 002 — Migrate to Svelte
 
+Status: done (2026-10-14). Steps 3 and 4 landed as one commit; all 18 template/format screenshots matched the vanilla app byte for byte.
+
 Goal: same app, same features, same pixels, rebuilt as a Svelte 5 app with a Vite build. It stays fully client-side and deploys as static files to Cloudflare Pages.
 
 ## Approach

@@ -7,8 +7,8 @@ Guidance for AI coding agents working on **fotomoko**: a webcam photobooth that 
 - **Everything runs client-side in the browser.** No backend, no server, no login, no accounts, no pricing, no analytics. Camera frames and photos must never leave the device. Do not add an API route or any dependency that needs a server.
 - **It's a static site.** It's deployed as plain files, like its sibling project strukfoto (strukfoto.rayyanekaputra.com).
 - **Phones are first-class users.** Assume a mid-range phone with limited memory, a small viewport, touch input, and a slow CPU. iOS Safari must work.
-- **No build step.** Plain HTML plus native ES modules (`.mjs`), served as static files. Don't introduce a bundler, framework, or transpiler without asking first.
-- Prefer zero runtime dependencies. Don't add CDN scripts. Google Fonts is acceptable for typography.
+- **Svelte 5 + Vite, plain JavaScript.** `bun run build` writes static files to `dist/`. No SvelteKit, no TypeScript, no other framework or transpiler without asking first.
+- Prefer zero runtime dependencies (Svelte compiles away). Don't add CDN scripts. Google Fonts is acceptable for typography.
 
 ## Project layout
 
@@ -16,24 +16,33 @@ Keep this table up to date as files are added.
 
 | File | Role |
 | --- | --- |
-| `index.html` | Markup, inline CSS, and the single `<script type="module">` entry point (`main.mjs`) |
-| `main.mjs` | App wiring: template picker, photo loading, text fields, preview, download |
-| `elements.mjs` | Central DOM lookups (`elements` object). Add new control IDs here |
-| `export.mjs` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap |
-| `draw_utils.mjs` | Shared canvas helpers: `drawCover` (crop, zoom, Figma luminosity blend), `drawText` (Figma text boxes incl. cap-trim and rotation), `drawRotatedImage`, round rects, `dates` |
-| `fonts.mjs` | `ensureFonts()`: waits for a template's fonts before drawing. Families are loaded by the Google Fonts `<link>` in `index.html` |
-| `assets.mjs` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
-| `templates/index.mjs` | `TEMPLATES` list (picker order) |
-| `templates/<name>.mjs` | One template each: `{ id, name, width, height, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. The file header names the Figma frame and node id |
-| `templates/ticket_parts.mjs` | Shared boarding-pass pieces (styles, fields, info block) |
-| `assets/svg/` | Logos, icons, markers and barcodes exported from Figma |
-| `assets/photo/` | Sample photos, loaded only when the user asks. They get deployed, so keep them free of EXIF/GPS metadata |
-| `plans/` | Implementation plans (`001-templates.md` = the 6 templates) |
+| `index.html` | Vite entry: Google Fonts `<link>` and `<script type="module" src="/src/main.js">` |
+| `vite.config.js` | Svelte plugin, `base: './'` so `dist/` works from any path |
+| `src/main.js` | Mounts `App` into `<body>` and imports `app.css` |
+| `src/app.css` | Global styles (the body grid: `<aside>` controls, `<main>` preview) |
+| `src/App.svelte` | App state (template, photos, per-template field values, export options) and layout. Handles the dev URL params |
+| `src/components/TemplatePicker.svelte` | Template `<select>` |
+| `src/components/PhotoInput.svelte` | File input and "Use sample photos" |
+| `src/components/Fields.svelte` | Text inputs built from `template.fields` |
+| `src/components/ExportOptions.svelte` | Format / background / size, size-cap note, PNG download |
+| `src/components/Preview.svelte` | Preview canvas; re-renders once per animation frame on changes and on resize |
+| `src/lib/photos.js` | Photo loading (downscaled to 2400px), sample list, `photosForSlots` |
+| `src/lib/export.js` | `renderTo()`: draws a template as native / story 9:16 / square 1:1 at 1×–4×, with the iOS canvas size cap |
+| `src/lib/draw_utils.js` | Shared canvas helpers: `drawCover` (crop, zoom, Figma luminosity blend), `drawText` (Figma text boxes incl. cap-trim and rotation), `drawRotatedImage`, round rects, `dates` |
+| `src/lib/fonts.js` | `ensureFonts()`: waits for a template's fonts before drawing. Families are loaded by the Google Fonts `<link>` in `index.html` |
+| `src/lib/assets.js` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
+| `src/lib/templates/index.js` | `TEMPLATES` list (picker order) |
+| `src/lib/templates/<name>.js` | One template each: `{ id, name, width, height, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. The file header names the Figma frame and node id |
+| `src/lib/templates/ticket_parts.js` | Shared boarding-pass pieces (styles, fields, info block) |
+| `public/assets/svg/` | Logos, icons, markers and barcodes exported from Figma. Served as-is at `assets/svg/...` |
+| `public/assets/photo/` | Sample photos, loaded only when the user asks. They get deployed, so keep them free of EXIF/GPS metadata |
+| `dist/` | Build output (gitignored) |
+| `plans/` | Implementation plans (`001-templates.md` = the 6 templates, `002-svelte-migration.md`) |
 | `backlog.md` | Unscheduled ideas (photo filters, capture aspect, camera, share, PWA) |
 
-Templates are drawn on a canvas in Figma coordinates; `export.mjs` sets the transform for the chosen scale and format, so templates never deal with export sizes. Dev shortcut: `?template=<id>&format=story&bg=dark&samples` opens a template with the sample photos loaded.
+`src/lib/` is framework-free canvas code; keep it that way so the drawing stays testable and portable. Templates are drawn on a canvas in Figma coordinates; `export.js` sets the transform for the chosen scale and format, so templates never deal with export sizes. Dev shortcut: `?template=<id>&format=story&bg=dark&samples` opens a template with the sample photos loaded.
 
-Adding a template: create `templates/<name>.mjs`, add it to `TEMPLATES`, add any new Google Font family to the `<link>` in `index.html`, and put its SVGs in `assets/svg/`. Text that users can change goes in `fields` (the UI builds inputs from it automatically); defaults are placeholders.
+Adding a template: create `src/lib/templates/<name>.js`, add it to `TEMPLATES`, add any new Google Font family to the `<link>` in `index.html`, and put its SVGs in `public/assets/svg/` (referenced as `assets/svg/<file>.svg`). Text that users can change goes in `fields` (the UI builds inputs from it automatically); defaults are placeholders.
 
 Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). When changing a template, pull the design data for its node and copy the numbers; don't eyeball them.
 
@@ -51,10 +60,12 @@ Intentional differences from Figma (don't "fix" them back):
 
 ## Current status (2026-10-14)
 
+- Done: migrated to Svelte 5 + Vite (`plans/002-svelte-migration.md`), output pixel-identical to the vanilla version.
 - Done: all 6 templates, export (native / story / square, 1×–4×, light/dark background), editable text fields, sample photos. See `plans/001-templates.md`.
 - Waiting: the user's QA of the templates.
 - Not started: camera capture, photo filters, share sheet, PWA (see `backlog.md`).
-- Not a git repository yet, and there's no `readme.md` yet. Ask before running `git init` or committing.
+- Git repo on `master`, not pushed anywhere yet. Ask before committing or pushing.
+- Deploy target: Cloudflare Pages (static, `dist/`). Not set up yet; see `README.md`.
 
 ## Environment and file safety
 
@@ -65,18 +76,18 @@ Intentional differences from Figma (don't "fix" them back):
 
 ## Running and testing
 
-- No install needed. Serve the directory statically, e.g. `bunx serve .`, and open it in a browser. ES modules don't load over `file://`.
-- **Don't use `bun index.html`.** That's Bun's bundling dev server: it answers every path it didn't bundle with `index.html`, so SVGs and sample photos that templates load at runtime fail ("asset failed to load").
+- `bun install`, then `bun run dev` (Vite dev server with hot reload). `bun run build` builds to `dist/`; `bun run preview` serves the build.
+- Don't serve the repo root with a plain static server any more: `index.html` points at `/src/main.js`, which only Vite understands. Don't use `bun index.html` either.
 - **`getUserMedia` requires a secure context.** `localhost` works. Testing on a phone over the LAN needs HTTPS (or a tunnel).
-- There is no test suite or linter. Syntax-check with `bun build --no-bundle <file> > /dev/null`. Verify changes by loading the page (and later, granting camera access and taking photos). Test at phone width (DevTools device emulation) as well as desktop.
+- There is no test suite or linter. `bun run build` is the check: it fails on syntax and Svelte compile errors. Verify changes by loading the page (and later, granting camera access and taking photos). Test at phone width (DevTools device emulation) as well as desktop.
 - Headless check: `firefox --headless --no-remote --profile "$PWD/.tmp/ff" --window-size=1600,1400 --screenshot "$PWD/.tmp/out.png" "http://localhost:<port>/?template=<id>&samples"`, using absolute paths. It screenshots at the page's `load` event, so without `&samples` the canvas may not have rendered yet. Firefox is the only browser installed; Chrome and Safari are untested.
 - If you start a server in the background, stop it with `kill $(lsof -t -i:<port>)`. Don't use `pkill -f` with a pattern that also matches your own shell command.
 
 ## Conventions
 
-- Vanilla JS, 2-space indent, single quotes, semicolons, `camelCase` identifiers.
-- Keep DOM lookups in one place (e.g. an `elements` object) rather than scattered `querySelector` calls.
-- Keep `readme.md` in sync when user-facing features change.
+- JavaScript (no TypeScript), Svelte 5 runes (`$state`, `$derived`, `$props`, `$effect`), 2-space indent, single quotes, semicolons, `camelCase` identifiers.
+- No `querySelector`; use Svelte bindings (`bind:this`, `bind:value`). Keep components small and drawing logic in `src/lib/`.
+- Keep `README.md` in sync when user-facing features change.
 - Commit messages follow a conventional style (`chore:`, `feat:`, `fix:`, `refactor:`), lowercase.
 
 ## Camera and performance (important for mobile)
@@ -99,5 +110,5 @@ Intentional differences from Figma (don't "fix" them back):
 
 - **Plan first, then wait for "GO".** For every feature request, start by presenting an implementation plan (what changes, which files, any trade-offs) plus any questions you have. Do not edit code until the user reviews it and replies "GO". Small, clearly specified fixes (e.g. "unround the bottom corners") can be done directly. If the user says to work through a batch until it's done, don't stop for GO between items; they'll QA at the end.
 - Stay within the current focus the user sets. Put unrelated ideas in `backlog.md` instead of building them.
-- Ask before adding dependencies, a build step, or changing the client-only architecture.
+- Ask before adding dependencies or changing the client-only architecture.
 - Keep changes small and focused; this is a simple tool and should stay simple.
