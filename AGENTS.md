@@ -40,24 +40,13 @@ Keep this table up to date as files are added.
 | `dist/` | Build output (gitignored) |
 | `plans/` | Implementation plans (`001-templates.md` = the 6 templates, `002-svelte-migration.md`) |
 | `backlog.md` | Unscheduled ideas (photo filters, capture aspect, camera, share, PWA) |
+| `figma.md` | Map of the Figma file: frame node ids, names, template ids, slots, status. Read it before calling the Figma MCP |
 
 `src/lib/` is framework-free canvas code; keep it that way so the drawing stays testable and portable. Templates are drawn on a canvas in Figma coordinates; `export.js` sets the transform for the chosen scale and format, so templates never deal with export sizes. Dev shortcut: `?template=<id>&format=story&bg=dark&samples` opens a template with the sample photos loaded.
 
 Adding a template: create `src/lib/templates/<name>.js`, add it to `TEMPLATES`, add any new Google Font family to the `<link>` in `index.html`, and put its SVGs in `public/assets/svg/` (referenced as `assets/svg/<file>.svg`). Text that users can change goes in `fields` (the UI builds inputs from it automatically); defaults are placeholders.
 
-Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). When changing a template, pull the design data for its node and copy the numbers; don't eyeball them.
-
-| Template id | Figma frame | Node |
-| --- | --- | --- |
-| `strip-classic` | Frame 39 | `21:2` |
-| `film` | Frame 43 | `21:234` |
-| `strip-wide` | Frame 40 | `21:21` |
-| `polaroid` | Frame 44 | `21:274` |
-| `ticket-wide` | Frame 41 | `21:37` |
-| `ticket-tall` | Frame 42 | `21:138` |
-
-Intentional differences from Figma (don't "fix" them back):
-- `ticket-tall`: the photo's bottom corners are square (Figma rounds all four). The user asked for this.
+Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). **Read `figma.md` first.** It maps every frame (node id, name, template, size, slots, status, intentional differences), so you don't have to rescan the file. When changing a template, pull the design data for its node and copy the numbers; don't eyeball them. Keep `figma.md` updated whenever you pull Figma data.
 
 ## Current status (2026-10-14)
 
