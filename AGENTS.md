@@ -42,6 +42,7 @@ Keep this table up to date as files are added.
 | `plans/` | Implementation plans (`001-templates.md` = the 6 templates, `002-svelte-migration.md`) |
 | `backlog.md` | Unscheduled ideas (photo filters, capture aspect, camera, share, PWA) |
 | `figma.md` | Map of the Figma file: frame node ids, names, template ids, slots, status. Read it before calling the Figma MCP |
+| `comprehensive_design_ui_handover_guide.md` | How UI designs, notes, states and motion specs get handed over from Figma. Read it before building UI from Figma |
 
 `src/lib/` is framework-free canvas code; keep it that way so the drawing stays testable and portable. Templates are drawn on a canvas in Figma coordinates; `export.js` sets the transform for the chosen scale and format, so templates never deal with export sizes. Dev shortcut: `?template=<id>&format=story&bg=dark&samples` opens a template with the sample photos loaded.
 
