@@ -60,7 +60,7 @@ Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). **Read `figma.md` first.
 - Waiting: the user's QA of the templates and the Svelte UI. Not yet tested after the migration: PNG download, loading photos through the file picker, typing in text fields, and a real phone (only one phone-width screenshot was checked).
 - The built app loads much faster than the old unbundled `.mjs` setup (one bundled file instead of a chain of module requests). Canvas drawing cost is unchanged.
 - Not started: camera capture, photo filters, share sheet, PWA (see `backlog.md`).
-- Git repo on `master`, not pushed anywhere yet. Ask before committing code or pushing. Exception: agents may commit changes to `AGENTS.md`, `CLAUDE.md` and `backlog.md` themselves, without asking. Keep those commits to just those files, and use `docs:` messages.
+- Git repo on `main`, not pushed anywhere yet. Ask before committing code or pushing. Exception: agents may commit changes to `AGENTS.md`, `CLAUDE.md` and `backlog.md` themselves, without asking. Keep those commits to just those files, and use `docs:` messages.
 - Deploy target: Cloudflare Pages (static, `dist/`). Not set up yet; see `README.md`.
 
 ## Environment and file safety
