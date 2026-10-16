@@ -2,7 +2,7 @@
 
 A map of the Fotomoko Figma file, so agents don't have to rescan it. Read this before calling the Figma MCP. How to use the MCP (cloud server, rate limits, `get_design_context` rules) is in `CLAUDE.md`.
 
-Last synced: 2026-10-16, from one `get_metadata` call on the Frames page.
+Last synced: 2026-10-16, from one `get_metadata` call on the Frames page (9 frames).
 
 ## File
 
@@ -32,6 +32,7 @@ Sizes are in Figma units and match the template `W`/`H`. Slot sizes are the phot
 | `23:277` | Frames / Airplane Ticket Shot | `ticket-tall` | `ticket_tall.js` | 559×1064.06 | 1 | Built (from `21:138`) |
 | `23:163` | Frames / Filmy | — | — | 401×1390 | 4 (226.2×329.5) | New, not built |
 | `24:1062` | Frames / Mokopedia | — | — | 482×490 | 3 (135.3×167) | New, not built |
+| `24:1403` | Frames / LINES | — | — | 401×1390 | 4 (228×347.5) | New, not built |
 
 The built templates were made from the `21:*` originals on Page 1. The `23:*` copies on the Frames page have the same sizes. If a copy now differs from the code, the user probably changed the design on purpose: ask before changing the template.
 
@@ -61,6 +62,10 @@ These come from structure only; no `get_design_context` has been run on them yet
   - A panel (`24:1125`) with 3 photo slots side by side (`24:1127`, `24:1129`, `24:1131`; 135.3×167, about 4:5).
   - Footer: a "SIFOTO" logo (`24:1134`) and 4 detail texts (`Layanan: Drop Off`, `SiFoto NGARET: NGARET`, `Berat: Banget`, `Ongkir: Rp36,000`). These are likely editable `fields`.
   - A smiley watermark (Union `24:1063`) that overflows the bottom.
+- **LINES** (`24:1403`), 401×1390. A symmetric vertical strip, all inside `24:1405`:
+  - Middle: 4 photo slots stacked edge to edge with no gap (`24:1417` at x 86.5; `24:1418`, `24:1420`, `24:1422`, `24:1424`; 228×347.5, close to 2:3).
+  - Left and right: two 86.5-wide side bands with the same content (`24:1406` and `24:1426`). They're rotated, so their child coordinates run along the strip's length. Each holds sideways text "FOTOMOKO", "#FOTODULS", a time `12.31` + `WITA` (likely editable `fields`) and a cropped smiley (Union `24:1407` / `24:1432`). The smiley sits at opposite ends of the two bands.
+  - A small 42×24 badge at the top (`24:1404`), the same as Filmy's `23:276`.
 
 ## Keeping this file current
 
