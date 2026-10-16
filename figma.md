@@ -29,7 +29,7 @@ Sizes are in Figma units and match the template `W`/`H`. Slot sizes are the phot
 | `23:534` | Frames / Ducky | `strip-wide` | `strip_wide.js` | 1064.8×359.73 | 3 (3:4) | Built (from `21:21`) |
 | `23:474` | Frames / Floaters | `polaroid` | `polaroid.js` | 1073.07×1404.59 | 3 (3:4) | Built (from `21:274`) |
 | `23:373` | Frames / Airplane Ticket | `ticket-wide` | `ticket_wide.js` | 1368×463 | 3 (~1:1) | Built (from `21:37`) |
-| `23:277` | Frames / Airplan Ticket Shot | `ticket-tall` | `ticket_tall.js` | 559×1064.06 | 1 | Built (from `21:138`) |
+| `23:277` | Frames / Airplane Ticket Shot | `ticket-tall` | `ticket_tall.js` | 559×1064.06 | 1 | Built (from `21:138`) |
 | `23:163` | Frames / Filmy | — | — | 401×1390 | 4 (226.2×329.5) | New, not built |
 | `24:1062` | Frames / Mokopedia | — | — | 482×490 | 3 (135.3×167) | New, not built |
 
@@ -44,7 +44,7 @@ The built templates were made from the `21:*` originals on Page 1. The `23:*` co
 - **Ducky** (`strip-wide`): yellow strip, 3 B&W photos, a rotated date, "Fotomoko" in Inter, and a big cropped smiley (`smiley-wide.svg`).
 - **Floaters** (`polaroid`): cream paper, colour photos in a 2×2 grid with the 4th cell empty, a handwritten name ("Eka Putra, Rayyan"), a big yellow "fotomoko" and smiley stamps (`polaroid-stamp-1/2.svg`).
 - **Airplane Ticket** (`ticket-wide`): boarding pass in IBM Plex Mono with a red header, flight fields, a barcode and a smiley watermark. Its SVGs are `ticket-smiley`, `icon-ticket`, `icon-seat`, `ticket-divider`, `icon-takeoff` and `barcode-wide`. The shared parts are in `ticket_parts.js`.
-- **Airplan Ticket Shot** (`ticket-tall`): portrait boarding pass with the photo on top and the ticket below. Its SVGs are the `ticket-tall-*` files and `barcode-tall`. **Intentional difference:** the photo's bottom corners are square, while Figma rounds all four. Don't fix this.
+- **Airplane Ticket Shot** (`ticket-tall`): portrait boarding pass with the photo on top and the ticket below. Its SVGs are the `ticket-tall-*` files and `barcode-tall`. **Intentional difference:** the photo's bottom corners are square, while Figma rounds all four. Don't fix this.
 
 ### New, not built
 
