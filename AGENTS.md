@@ -34,6 +34,7 @@ Keep this table up to date as files are added.
 | `src/lib/assets.js` | `loadTemplateImages()`: loads and caches the SVGs a template lists in `images` |
 | `src/lib/templates/index.js` | `TEMPLATES` list (picker order) |
 | `src/lib/templates/<name>.js` | One template each: `{ id, name, width, height, radius?, slots, fonts, images, fields, draw(ctx, { photos, fields, images }) }`, all in Figma units. `radius` (rounded card corners) shapes the story/square shadow. The file header names the Figma frame and node id |
+| `src/lib/templates/filmy.js`, `mokopedia.js`, `lines.js` | The 3 newer templates, built straight from the Figma Frames page |
 | `src/lib/templates/ticket_parts.js` | Shared boarding-pass pieces (styles, fields, info block) |
 | `public/assets/svg/` | Logos, icons, markers and barcodes exported from Figma. Served as-is at `assets/svg/...` |
 | `public/assets/photo/` | Sample photos, loaded only when the user asks. They get deployed, so keep them free of EXIF/GPS metadata |
@@ -51,7 +52,8 @@ Figma source: file `ECge2TwI3tAvp2la9VQgb0` (Fotomoko). **Read `figma.md` first.
 ## Current status (2026-10-14)
 
 - Done: migrated to Svelte 5 + Vite (`plans/002-svelte-migration.md`), output pixel-identical to the vanilla version.
-- Done: all 6 templates, export (native / story / square, 1×–4×, light/dark background), editable text fields, sample photos. See `plans/001-templates.md`.
+- Done: Filmy, Mokopedia and LINES templates (B&W photos), 2026-10-16. Checked in headless Firefox screenshots only.
+- Done: all 6 original templates, export (native / story / square, 1×–4×, light/dark background), editable text fields, sample photos. See `plans/001-templates.md`.
 - Done: canvas fixes. Story/square now have a soft 0-offset shadow, a transparent background option and an S/M/L/XL template-size slider. The default export size is 2× (labelled recommended). Checked in headless Firefox screenshots only; PNG download and the slider in a real browser are untested.
 - Done: `strip-classic` swatches come from the photos via `src/lib/palette.js`. All session photos are combined, the swatches are always automatic (no manual override), and the whole photo is sampled, not just the slot crop. The colours are "lively": the original colours from before the B&W tone, with saturated colours boosted. k-means was tried first and dropped because its result depended on pixel order (EXIF rotation changed the palette); the grid count + merge is deterministic. With the samples it gives beige, cyan, dark brown, tan, close to the Figma swatches. Tuning knob: `CHROMA_REF` (lower = more vivid). Checked in headless Firefox and with Bun on rotated, single, greyscale and solid inputs; file-picker photos and phones are untested.
 - The current UI is a dev test bench for the canvas (templates, filters later). The real UI will be designed in Figma later; see `backlog.md`. The sample photos (the user's own) stay in `public/` as deployed placeholders.

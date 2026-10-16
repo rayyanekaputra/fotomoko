@@ -208,4 +208,5 @@ export const dates = {
   year: (d = new Date()) => String(d.getFullYear()), // 2026
   long: (d = new Date()) => `${MONTHS_LONG[d.getMonth()]} ${ordinal(d.getDate())}, ${d.getFullYear()}`, // October 14th, 2026
   monthOrdinal: (d = new Date()) => `${MONTHS[d.getMonth()]} ${ordinal(d.getDate()).toUpperCase()}`, // OCT 14TH
+  time: (d = new Date()) => `${String(d.getHours()).padStart(2, '0')}.${String(d.getMinutes()).padStart(2, '0')}`, // 12.31, browser local time
 };
