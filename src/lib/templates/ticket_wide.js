@@ -1,4 +1,4 @@
-// Frame 41 (Figma 21:37): landscape boarding pass. Red header, 3 photos,
+// Airplane Ticket (Figma 23:373, originally 21:37): landscape boarding pass. Red header, 3 photos,
 // flight details on the right, barcode and a faint smiley watermark.
 
 import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.js';

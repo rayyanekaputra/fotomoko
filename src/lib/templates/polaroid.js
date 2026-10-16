@@ -1,4 +1,4 @@
-// Frame 44 (Figma 21:274): cream paper, 3 colour photos in a 2×2 grid,
+// Floaters (Figma 23:474, originally 21:274): cream paper, 3 colour photos in a 2×2 grid,
 // a handwritten name, a huge yellow "fotomoko" and two smiley stamps.
 
 import { drawCover, drawText, drawRotatedImage, fillRect } from '../draw_utils.js';

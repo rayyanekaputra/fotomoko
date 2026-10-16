@@ -1,4 +1,4 @@
-// Frame 40 (Figma 21:21): yellow horizontal strip, 3 black & white photos,
+// Ducky (Figma 23:534, originally 21:21): yellow horizontal strip, 3 black & white photos,
 // then a panel with the date, "Fotomoko" and a big cropped smiley.
 
 import { drawCover, drawText, drawRotatedImage, fillRect, dates } from '../draw_utils.js';

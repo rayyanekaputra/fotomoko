@@ -1,4 +1,4 @@
-// Frame 42 (Figma 21:138): portrait boarding pass. One photo on top, red
+// Airplane Ticket Shot (Figma 23:277, originally 21:138): portrait boarding pass. One photo on top, red
 // header, flight details, barcode and a faint smiley watermark.
 
 import { drawCover, drawText, drawRotatedImage, fillRect, roundRectPath } from '../draw_utils.js';

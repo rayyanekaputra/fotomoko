@@ -1,4 +1,4 @@
-// Shared pieces of the boarding-pass templates (Frames 41 and 42).
+// Shared pieces of the boarding-pass templates (Airplane Ticket and Airplane Ticket Shot).
 
 import { drawText, dates } from '../draw_utils.js';
 

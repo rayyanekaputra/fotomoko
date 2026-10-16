@@ -1,4 +1,4 @@
-// Frame 39 (Figma 21:2): white vertical strip, 4 black & white photos,
+// Minimal Strip (Figma 23:550, originally 21:2): white vertical strip, 4 black & white photos,
 // sideways labels and colour swatches on the right. The swatches are the
 // session's photo palette (original colours, before the black & white tone).
 

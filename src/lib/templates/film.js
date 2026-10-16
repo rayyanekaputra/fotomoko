@@ -1,4 +1,4 @@
-// Frame 43 (Figma 21:234): black film strip, 4 photos tinted with the
+// Disco (Figma 23:494, originally 21:234): black film strip, 4 photos tinted with the
 // palette colours, shape markers on the left, yellow sideways text and a
 // 3-colour bar on the right.
 
